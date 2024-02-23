@@ -1,0 +1,150 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #000;
+  background-image: url("coconut1411_dnd_table_top_view__empty_middle__close_up__98cf0924-80e1-4625-b7c0-239f8ca76984.png");
+  
+  background-size: cover;
+  background-position: center; /* Centers the background image */
+  animation: zoomBackground 3s forwards;
+}
+
+@keyframes zoomBackground {
+    0% {
+        background-size: 100%; /* Initial size */
+    }
+    100% {
+        background-size: 120%; /* Zoomed size */
+    }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  overflow-x: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transform: scale(.9);
+}
+
+img {
+  width: 100%;
+    margin: auto;
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+
+}
+
+.tarot-card {
+  width: 300px;
+  height: 500px;
+  margin: auto;
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  box-shadow: 0px 2px 30px #000;
+  cursor: pointer;
+    border-radius: 10px;
+  border: .3em solid #000000;
+  z-index: 100;
+  background-color: #000000;
+}
+
+.tarot-card:nth-child(1) {
+  transform: rotate(-3deg);
+}
+
+.tarot-card:nth-child(2) {
+  transform: rotate(4deg);
+}
+
+.tarot-card:nth-child(3) {
+  transform: rotate(10deg);
+}
+
+.tarot-card:nth-child(4) {
+  transform: rotate(4deg);
+}
+
+.top {
+  z-index: 150;
+}
+
+.bottom{
+  z-index: 50;
+}
+
+</style>
+<div class="container">
+
+
+    <div class="tarot-card">
+        <img src="thedevil.png">
+    </div>
+    <!-- card one hermit -->
+    <div class="tarot-card">
+      <img src="thedeath.png">
+    </div>
+  
+    <!-- card two temperance -->
+    <div class="tarot-card shuffle">
+      <img src="thejudgement.png">
+    </div>
+  
+    <!-- card three hanged-man -->
+    <div class="tarot-card">
+      <img src="theworld.png">
+    </div>
+  
+    <!-- card four hierophant -->
+    <div class="tarot-card">
+      <img src="cover.png">
+    </div>
+  <!--   <h1>Click to Shuffle</h1> -->
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var count = 0;
+      var tarotCards = document.querySelectorAll('.tarot-card');
+
+      tarotCards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          if (count < 5) {
+            card.classList.remove('top');
+            card.classList.add('bottom');
+            count++;
+          }
+          if (count === 5) {
+            document.querySelectorAll('.tarot-card').forEach(function (card) {
+              card.classList.remove('bottom');
+            });
+            count = 0;
+          }
+          shuffle(card);
+        });
+      });
+
+      function shuffle(card) {
+        gsap.fromTo(
+          card,
+          { x: 410, y: -15, ease: 'expo.out' },
+          { x: 0, y: 0, ease: 'expo.in', duration: 0.6 }
+        );
+      }
+    });
+  </script>
